@@ -6,10 +6,12 @@ public class ReportMousePosition : MonoBehaviour
     private Camera cam;
     private RaycastHit hit;
     [SerializeField] public Vector3 hitPosition;
+    private GameObject player;
     
     private void Awake()
     {
         cam = Camera.main;
+        player = FindObjectOfType<TAGPlayer>().gameObject;
     }
 
     private void Update()
@@ -21,6 +23,10 @@ public class ReportMousePosition : MonoBehaviour
             {
                 hitPosition = hit.point;
                 Debug.DrawLine(ray.origin, hitPosition, Color.red);
+
+                var playerTransform = player.transform;
+                playerTransform.rotation =
+                    Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
             }
         }
     }
