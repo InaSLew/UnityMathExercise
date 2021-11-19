@@ -21,7 +21,6 @@ public class ReportMousePosition : MonoBehaviour
             {
                 hitPosition = hit.point;
                 Debug.DrawLine(ray.origin, hitPosition, Color.red);
-                Debug.Log("Raycast hit position: " + hitPosition);
             }
         }
     }
