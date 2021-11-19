@@ -1,12 +1,22 @@
+using System;
 using UnityEngine;
 
 public class MouseClick : MonoBehaviour
 {
     private Camera cam;
+    [SerializeField] private Vector3 mousePoint;
 
     private void Awake()
     {
         cam = Camera.main;
+    }
+
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            Debug.Log("Mouse position: " + mousePoint);
+        }
     }
 
     private void OnGUI()
@@ -18,9 +28,7 @@ public class MouseClick : MonoBehaviour
             y = cam.pixelHeight - currentEvent.mousePosition.y
         };
 
-        var point = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
+        mousePoint = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
         // var point = cam.ScreenToViewportPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
-        
-        Debug.Log("Mouse position: " + point);
     }
 }
