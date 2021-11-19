@@ -19,6 +19,7 @@ public class MouseClick : MonoBehaviour
         };
 
         var point = cam.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
+        // var point = cam.ScreenToViewportPoint(new Vector3(mousePos.x, mousePos.y, cam.nearClipPlane));
         
         Debug.Log("Mouse position: " + point);
     }
