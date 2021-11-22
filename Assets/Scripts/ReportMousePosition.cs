@@ -21,10 +21,10 @@ public class ReportMousePosition : MonoBehaviour
             var ray = cam.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
-                hitPosition = hit.point;
-                Debug.DrawLine(ray.origin, hitPosition, Color.red);
-
                 var playerTransform = player.transform;
+                hitPosition = new Vector3(hit.point.x , playerTransform.position.y, hit.point.z);
+                Debug.DrawLine(ray.origin, hitPosition, Color.red);
+                
                 playerTransform.rotation =
                     Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
             }
