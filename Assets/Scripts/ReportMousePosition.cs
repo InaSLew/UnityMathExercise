@@ -5,8 +5,8 @@ public class ReportMousePosition : MonoBehaviour
 {
     private Camera cam;
     private RaycastHit hit;
-    [SerializeField] public Vector3 hitPosition;
     private GameObject player;
+    [SerializeField] public Quaternion targetRotation = Quaternion.identity;
     
     private void Awake()
     {
@@ -14,6 +14,9 @@ public class ReportMousePosition : MonoBehaviour
         player = FindObjectOfType<TAGPlayer>().gameObject;
     }
 
+    // Quaternion.RotateTowards to Interpolate between two rotations.
+    // Quaternion.FromToRotation to get the Angle from a point to a point.
+    // Vector3.MoveTowards to walk from a point to a point with a maxSpeed. (If you want to do it with RigidBody / Acceleration, it's even better)
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -22,11 +25,17 @@ public class ReportMousePosition : MonoBehaviour
             if (Physics.Raycast(ray, out hit, Mathf.Infinity))
             {
                 var playerTransform = player.transform;
-                hitPosition = new Vector3(hit.point.x , playerTransform.position.y, hit.point.z);
+                var hitPosition = new Vector3(hit.point.x , playerTransform.position.y, hit.point.z);
                 Debug.DrawLine(ray.origin, hitPosition, Color.red);
-                
-                playerTransform.rotation =
+                targetRotation =
                     Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
+
+                // no smooth transitioning
+                // playerTransform.rotation = 
+                //     Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
+
+                // var targetRotation = Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
+                // playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, targetRotation, angularSpeed * Time.deltaTime);
             }
         }
     }

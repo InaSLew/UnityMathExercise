@@ -1,14 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     private ReportMousePosition reportMousePosition;
-    private Vector3 mouseClickPosition;
-    private Vector3 targetPosition;
-    [SerializeField] private float speed = .1f;
+    [SerializeField] private float angularSpeed;
     private void Awake()
     {
         reportMousePosition = FindObjectOfType<TAGMainCamera>().gameObject.GetComponent<ReportMousePosition>();
@@ -19,13 +14,16 @@ public class PlayerMovement : MonoBehaviour
     // Vector3.MoveTowards to walk from a point to a point with a maxSpeed.
     private void FixedUpdate()
     {
-        targetPosition = reportMousePosition.hitPosition;
-        Debug.Log("am from PlayerMovement.mouseClickPosition: " + targetPosition);
-        
-
-        // var yAngle = Vector3.Angle(transform.position, targetPosition);
-        // Debug.Log("yAngle: " + yAngle);
-        // transform.Rotate(0, yAngle * Time.deltaTime, 0);
+        if (Quaternion.Angle(transform.rotation, reportMousePosition.targetRotation) <= .01f)
+        {
+            Debug.Log("Turning finished");
+        }
+        else
+        {
+            Debug.Log("Turning in progress: " + transform.rotation);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, reportMousePosition.targetRotation,
+                angularSpeed * Time.deltaTime);
+        }
 
         // Move to hit position
     }
