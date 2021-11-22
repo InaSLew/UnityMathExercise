@@ -13,10 +13,7 @@ public class ReportMousePosition : MonoBehaviour
         cam = Camera.main;
         player = FindObjectOfType<TAGPlayer>().gameObject;
     }
-
-    // Quaternion.RotateTowards to Interpolate between two rotations.
-    // Quaternion.FromToRotation to get the Angle from a point to a point.
-    // Vector3.MoveTowards to walk from a point to a point with a maxSpeed. (If you want to do it with RigidBody / Acceleration, it's even better)
+    
     private void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -28,14 +25,7 @@ public class ReportMousePosition : MonoBehaviour
                 var hitPosition = new Vector3(hit.point.x , playerTransform.position.y, hit.point.z);
                 Debug.DrawLine(ray.origin, hitPosition, Color.red);
                 targetRotation =
-                    Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
-
-                // no smooth transitioning
-                // playerTransform.rotation = 
-                //     Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
-
-                // var targetRotation = Quaternion.FromToRotation(playerTransform.forward, hitPosition - playerTransform.position);
-                // playerTransform.rotation = Quaternion.RotateTowards(playerTransform.rotation, targetRotation, angularSpeed * Time.deltaTime);
+                    Quaternion.FromToRotation(Vector3.forward, (hitPosition - playerTransform.position).normalized);
             }
         }
     }
