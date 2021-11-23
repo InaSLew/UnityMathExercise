@@ -849,7 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8d636ba61a27b47bc2c59430332d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  closestToPlayer: {fileID: 0}
+  closestEnemy: {fileID: 819819890}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
