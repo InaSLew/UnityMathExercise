@@ -138,6 +138,7 @@ GameObject:
   - component: {fileID: 62063754}
   - component: {fileID: 62063755}
   - component: {fileID: 62063756}
+  - component: {fileID: 62063757}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -264,6 +265,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 11400000, guid: 34326d6e02031e54fbefd489ec9dea48, type: 2}
+--- !u!114 &62063757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 62063749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69be43cda3c5b734fb37fd6d2fbfb5f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: a24e692e9e375044cb2b89809cf24669, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 62063756}
+        m_TargetAssemblyTypeName: EnemyController, Assembly-CSharp
+        m_MethodName: TakeDamage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &232088460
 GameObject:
   m_ObjectHideFlags: 0
@@ -879,6 +908,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 11400000, guid: 5ca86a79263cae14aacf7749728b3932, type: 2}
   attack: {fileID: 11400000, guid: f395dccf71830e3448a9b2530510e3eb, type: 2}
+  onPlayerAttack: {fileID: 11400000, guid: a24e692e9e375044cb2b89809cf24669, type: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
