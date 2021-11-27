@@ -751,11 +751,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 597768993}
-  - component: {fileID: 597768994}
   - component: {fileID: 597768996}
-  - component: {fileID: 597768997}
   - component: {fileID: 597768998}
+  - component: {fileID: 597768997}
+  - component: {fileID: 597768994}
   - component: {fileID: 597768999}
+  - component: {fileID: 597769000}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -844,12 +845,25 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 597768992}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ae8d636ba61a27b47bc2c59430332d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   closestEnemy: {fileID: 819819890}
+--- !u!114 &597769000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597768992}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 806539c90274b8e4d892d394b7feea57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 11400000, guid: 5ca86a79263cae14aacf7749728b3932, type: 2}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
